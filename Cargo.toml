@@ -1,0 +1,36 @@
+[package]
+name = "treejumper-nvim"
+version = "0.1.0"
+edition = "2021"
+description = "A Neovim plugin for navigating code using tree-sitter AST"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+repository = "https://github.com/cychen2021/treejumper-nvim"
+
+[dependencies]
+tree-sitter = "0.21"
+tree-sitter-c = "0.21"
+tree-sitter-cpp = "0.21"
+tree-sitter-python = "0.21"
+tree-sitter-rust = "0.21"
+tree-sitter-c-sharp = "0.21"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"
+
+[lib]
+name = "treejumper_nvim"
+crate-type = ["rlib", "cdylib"]
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
+
+[profile.dev]
+opt-level = 0
+
+[[test]]
+name = "integration_tests"
+path = "tests/integration_tests.rs"
